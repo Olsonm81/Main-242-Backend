@@ -1,0 +1,43 @@
+/*By Matthew Olson CSCE 242*/
+:root {
+    --red:darkred;
+    --dark:#1E3A5F;
+    --white:white;
+    --sky:skyblue;
+}
+body {
+    background-color: var(--dark);
+}
+
+h1 {
+    text-align: center;
+    border: 2px solid var(--red);
+    background-color: var(--white);
+    width:fit-content;
+    padding:10px;
+    padding-right:15px;
+    padding-left:15px;
+    margin:15px auto;
+}
+p {
+    text-align: center;
+    margin:0px auto;
+    border: 2px solid var(--red);
+    border-radius: 2px;
+    width: 35%;
+    padding:5px;
+    background-color: var(--white);
+}
+a {
+    text-decoration: none;
+    border: 2px solid var(--red);
+    background-color: var(--white);
+    padding:25px;
+    position: relative;
+    top:40px;
+    left:45%;
+}
+a:visited {
+    color:var(--dark);
+
+}
