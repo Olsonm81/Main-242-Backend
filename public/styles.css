@@ -33,13 +33,18 @@ a {
     border: 2px solid var(--red);
     background-color: var(--white);
     padding:25px;
-    position: relative;
-    top:40px;
-    left:45%;
+    margin:15px;
 }
 a:visited {
     color:var(--dark);
 
+}
+#Get {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 /* Smaller Resolutions */
 @media only screen and (max-width: 600px) {
