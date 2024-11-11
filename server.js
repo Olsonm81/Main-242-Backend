@@ -12,7 +12,7 @@ const gallery = [
         "f-or-e": "Fire",
         "date": "July 9th 2023",
         "people": ["Jason"],
-        "description": "Our team was task with going to Washington state to put out several fires in the local area. We were able to accomplish this mission and were successful in putting out the fire that was widespread. While there we were able to provide critical support and medical care to the local community. This was our first successful deployment that we went on. This deployment overall provided the baseline of knowledge for how to successful deploy and ensure that the fires are put out the fastest way possible. Also, durign this fire we were able to connect and meet many great people who are in our feild.",
+        "description": "Our team was task with going to Washington state to put out several fires in the local area. We were able to accomplish this mission and were successful in putting out the fire that was widespread. While there we were able to provide critical support and medical care to the local community. This was our first successful deployment that we went on. This deployment overall provided the baseline of knowledge for how to successful deploy and ensure that the fires are put out the fastest way possible. Also, during this fire we were able to connect and meet many great people who are in our feild.",
         
         "images": [
             "https://main-242-backend.onrender.com/images/washington-fire-gallery.jpg"
