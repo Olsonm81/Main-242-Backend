@@ -15,7 +15,7 @@ const gallery = [
         "description": "Our team was task with going to Washington state to put out several fires in the local area. We were able to accomplish this mission and were successful in putting out the fire that was widespread. While there we were able to provide critical support and medical care to the local community. This was our first successful deployment that we went on. This deployment overall provided the baseline of knowledge for how to successful deploy and ensure that the fires are put out the fastest way possible. Also, durign this fire we were able to connect and meet many great people who are in our feild.",
         
         "images": [
-            "washington-fire-gallery.jpg"
+            "https://main-242-backend.onrender.com/images/washington-fire-gallery.jpg"
         ],
     },
     
@@ -28,7 +28,7 @@ const gallery = [
         "description": "Assisted with the removal of trees that feel during the fire. Also, helped reduced the spread of the fire to other parts of the National Forest. This operation overall was consided a success especially after our hardworking members were able to stop the fire. This experience was an excellent opprotunity to our team to who gained a vast amount of knowledge from this deployment.",
         
         "images": [
-            "arizona-fire.jpg"
+            "https://main-242-backend.onrender.com/images/arizona-fire.jpg"
         ],
     },
 ];
