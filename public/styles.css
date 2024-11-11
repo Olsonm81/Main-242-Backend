@@ -41,3 +41,11 @@ a:visited {
     color:var(--dark);
 
 }
+/* Smaller Resolutions */
+@media only screen and (max-width: 600px) {
+    a {
+        left:29%;
+    }
+
+  }
+
