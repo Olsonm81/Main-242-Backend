@@ -30,7 +30,7 @@ const gallery = [
         "people": "Jason",
         "description": "Our team was task with going to Washington state to put out several fires in the local area. We were able to accomplish this mission and were successful in putting out the fire that was widespread. While there we were able to provide critical support and medical care to the local community. This was our first successful deployment that we went on. This deployment overall provided the baseline of knowledge for how to successful deploy and ensure that the fires are put out the fastest way possible. Also, during this fire we were able to connect and meet many great people who are in our feild.",
         
-        "images": "http://localhost:3001/images/washington-fire-gallery.jpg",
+        "images": "https://main-242-backend.onrender.com/images/washington-fire-gallery.jpg",
     },
     
     {
@@ -42,7 +42,7 @@ const gallery = [
         "people": "Junior",
         "description": "Assisted with the removal of trees that feel during the fire. Also, helped reduced the spread of the fire to other parts of the National Forest. This operation overall was consided a success especially after our hardworking members were able to stop the fire. This experience was an excellent opprotunity to our team to who gained a vast amount of knowledge from this deployment.",
         
-        "images":"http://localhost:3001/images/arizona-fire.jpg",
+        "images":"https://main-242-backend.onrender.com/images/arizona-fire.jpg",
     },
 ];
 
@@ -75,7 +75,7 @@ app.post("/api/gallery", upload.single("img"), (req, res) => {
   };
   
   if(req.file) {
-    gal.images = "http://localhost:3001/images/" + req.file.filename; 
+    gal.images = "https://main-242-backend.onrender.com/images/" + req.file.filename; 
   }
 
   gallery.push(gal);
@@ -103,7 +103,7 @@ app.put("/api/gallery/:id", upload.single("img"), (req, res) => {
   gal.description = req.body.description;
 
   if(req.file) {
-    gal.images = "http://localhost:3001/images/" + req.file.filename;
+    gal.images = "https://main-242-backend.onrender.com/images/" + req.file.filename;
   }
 
   res.send(gal);
