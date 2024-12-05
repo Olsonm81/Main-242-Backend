@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const Joi = require("joi");
 const multer = require("multer");
+const mongoose = require("mongoose");
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
@@ -20,7 +21,32 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage});
 
-const gallery = [
+mongoose
+  .connect(
+    "mongodb+srv://gxyOBnVDEERPgAAp:gxyOBnVDEERPgAAp@maincluster.1c5hm.mongodb.net/"
+  )
+  .then(() => {
+    console.log("connected to mongodb");
+  })
+  .catch((error) => {
+    console.log("couldn't connect to mongodb", error);
+  });
+
+const gallerySchema = new mongoose.Schema({
+  state: String,
+  city: String,
+  fe: String,
+  date: Date,
+  people: String,
+  description: String,
+  images: String,
+});
+
+const Gallery = mongoose.model("Gallery", gallerySchema);
+
+
+
+/*const gallery = [
     {
         "_id": 1,
         "state": "Oregon",
@@ -44,7 +70,7 @@ const gallery = [
         
         "images":"https://main-242-backend.onrender.com/images/arizona-fire.jpg",
     },
-];
+];*/
 
 
 app.get("/", (req, res) => {
@@ -52,74 +78,90 @@ app.get("/", (req, res) => {
 });
 
 
-
-app.get("/api/gallery", (req, res) => {
-  res.json(gallery);
+app.get("/api/gallery", async (req, res) => {
+  const gallery = await Gallery.find();
+  res.send(gallery);
+  //res.json(gallery);
 });
 
-app.post("/api/gallery", upload.single("img"), (req, res) => {
+app.get("/api/gallery/:id", async (req, res) => {
+  const gall = await Gallery.findOne({ _id: id });
+  res.send(gall);
+})
+
+app.post("/api/gallery", upload.single("img"), async (req, res) => {
   const result = validateGallery(req.body);
 
   if(result.error) {
     res.status(400).send(result.error.details[0].message);
     return;
   }
-  const gal = {
-    _id: gallery.length + 1,
+  const gal =  new Gallery ({
     state: req.body.state,
     city: req.body.city,
     fe: req.body.fe,
     date: req.body.date,
     people: req.body.people,
     description: req.body.description,
-  };
+  });
   
   if(req.file) {
     gal.images = "https://main-242-backend.onrender.com/images/" + req.file.filename; 
   }
 
-  gallery.push(gal);
-  res.status(200).send(gal);
+  const newGallery = await gal.save();
+  res.send(newGallery);
 });
 
 
-app.put("/api/gallery/:id", upload.single("img"), (req, res) => {
-  const gal = gallery.find((g) => g._id === parseInt(req.params.id));
-
-  if(!gal) return res.status(404).send("Gallery with given id was not found");
+app.put("/api/gallery/:id", upload.single("img"), async (req, res) => {
 
   const result = validateGallery(req.body);
+
+  /*const gal = gallery.find((g) => g._id === parseInt(req.params.id));
+
+  if(!gal) return res.status(404).send("Gallery with given id was not found");*/
 
   if(result.error) {
     res.status(400).send(result.error.details[0].message);
     return
   }
-
-  gal.state = req.body.state;
-  gal.city = req.body.city;
-  gal.fe = req.body.fe;
-  gal.date = req.body.date;
-  gal.people = req.body.people;
-  gal.description = req.body.description;
-
-  if(req.file) {
-    gal.images = "https://main-242-backend.onrender.com/images/" + req.file.filename;
+  let fieldsToUpdate = {
+    state: req.body.state,
+    city: req.body.city,
+    fe: req.body.fe,
+    date: req.body.date,
+    people: req.body.people,
+    description: req.body.description,
   }
 
-  res.send(gal);
+
+  if(req.file) {
+    fieldsToUpdate.images = "https://main-242-backend.onrender.com/images/" + req.file.filename;
+  }
+
+  const wentThrough = await Gallery.updateOne(
+    { _id: req.params.id},
+    fieldsToUpdate
+  );
+
+  const updatedGallery = await Gallery.findOne({ _id:req.params.id });
+  res.send(updatedGallery);
 
 });
 
 
-app.delete("/api/gallery/:id", (req, res) => {
-  const gal = gallery.find((g) => g._id === parseInt(req.params.id));
-
+app.delete("/api/gallery/:id", async (req, res) => {
+  /*const gal = gallery.find((g) => g._id === parseInt(req.params.id));
+  
   if (!gal) {
     res.status(404).send("The gallery with the given id was not found");
   }
 
   const index = gallery.indexOf(gal);
   gallery.splice(index, 1);
+  res.send(gal);*/
+  const gal = await Gallery.findByIdAndDelete(req.params.id);
   res.send(gal);
 });
 
