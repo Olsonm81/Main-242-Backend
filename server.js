@@ -23,7 +23,7 @@ const upload = multer({ storage: storage});
 
 mongoose
   .connect(
-    "mongodb+srv://gxyOBnVDEERPgAAp:gxyOBnVDEERPgAAp@maincluster.1c5hm.mongodb.net/?retryWrites=true&w=majority&appName=MainCluster"
+    "mongodb+srv://gxyOBnVDEERPgAAp:gxyOBnVDEERPgAAp@maincluster.1c5hm.mongodb.net/"
   )
   .then(() => {
     console.log("connected to mongodb");
