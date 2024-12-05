@@ -36,7 +36,7 @@ const gallerySchema = new mongoose.Schema({
   state: String,
   city: String,
   fe: String,
-  date: Date,
+  date: String,
   people: String,
   description: String,
   images: String,
